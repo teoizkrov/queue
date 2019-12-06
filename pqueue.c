@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "hqueue.h"
 
 struct Node
@@ -48,10 +49,16 @@ int dequeue( struct Queue *q )
     {
         int temp = q->head->data;
         if( q->head == q->tail )
-            q->head = q->tail = NULL;
+        {
+            free( q->head );
+            q->head = NULL;
+            q->tail = NULL;
+        }
         else
         {
+            struct Node *temp = q->head;
             q->head = q->head->next;
+            free( temp );
         }
 
         return temp;
@@ -66,9 +73,16 @@ int peek( struct Queue *q )
 }
 
 
-int main( int argc, char* argv[] )
+int main( int argc, char *argv[] )
 {
 
-    return 0;
-
+    
+    struct Queue q = new_queue();
+    int i;
+    for( i = 0; i < 10; i++ )
+        enqueue( &q, i );
+    while( !isempty( &q ) )
+    {
+        printf( "%d\n", dequeue( &q ) );
+    }    
 }
