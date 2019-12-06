@@ -24,13 +24,13 @@ struct Queue
 struct Queue new_queue() 
 {
     struct Queue q;
-    .head = q.tail = NULL;
+    q.head = q.tail = NULL;
     return q;
 }
 
 int isempty()
 {
-   return 1 
+   return 1; 
 }
 
 int peek()
