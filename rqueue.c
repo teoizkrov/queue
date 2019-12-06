@@ -44,15 +44,25 @@ void enqueue( struct Queue *q, int data )
 
 int dequeue( struct Queue *q )
 {
-    
+    if( q->head != NULL )
+    {
+        int temp = q->head->data;
+        if( q->head == q->tail )
+            q->head = q->tail = NULL;
+        else
+        {
+            q->head = q->head->next;
+        }
 
-    return 0;
+        return temp;
+    }
+    exit( 1 );
 }
 
 int peek( struct Queue *q )
 {
 
-    return 0;
+    return q->head->data;
 }
 
 
